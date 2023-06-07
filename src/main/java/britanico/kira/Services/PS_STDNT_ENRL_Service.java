@@ -20,9 +20,7 @@ import java.util.function.Function;
 @Service
 public class PS_STDNT_ENRL_Service implements PS_STDNT_ENRL_DAO {
 
-
     @Autowired
-    @Qualifier("PS_STDNT_ENRL_DAO")
     public PS_STDNT_ENRL_DAO psStdntEnrlDao;
 
     @Override

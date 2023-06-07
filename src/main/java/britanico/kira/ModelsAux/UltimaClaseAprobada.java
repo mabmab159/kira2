@@ -1,10 +1,7 @@
 package britanico.kira.ModelsAux;
 
-import jakarta.persistence.Table;
-
 import java.util.Date;
 
-@Table
 public class UltimaClaseAprobada {
     public String CRSE_ID; //Curso aprobado
     public String STRM;

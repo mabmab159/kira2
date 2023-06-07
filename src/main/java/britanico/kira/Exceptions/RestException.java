@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @RestControllerAdvice
 public class RestException extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(ResourceNotFoundException.class)
+    /*@ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> HandleParamNotFound(RuntimeException ex, WebRequest request) {
         Error error = new Error(new Error.ErrorDetalle("400", "Not Found", "Resource Not Found"));
         return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.valueOf(error.getError().getCode()),
@@ -47,5 +47,5 @@ public class RestException extends ResponseEntityExceptionHandler {
             public String detail;
         }
 
-    }
+    }*/
 }
