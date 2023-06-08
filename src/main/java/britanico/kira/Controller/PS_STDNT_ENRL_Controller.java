@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 public class PS_STDNT_ENRL_Controller {
@@ -24,29 +23,26 @@ public class PS_STDNT_ENRL_Controller {
     public PS_CLASS_TBL_Service psClassTblService;
 
     @Autowired
-    public PS_STDNT_ENRL_Controller(PS_STDNT_ENRL_Service psStdntEnrlService
-            , PS_CLASS_TBL_Service psClassTblService
-    ) {
+    public PS_STDNT_ENRL_Controller(PS_STDNT_ENRL_Service psStdntEnrlService, PS_CLASS_TBL_Service psClassTblService) {
         this.psStdntEnrlService = psStdntEnrlService;
         this.psClassTblService = psClassTblService;
     }
 
-
     @GetMapping("/test/{institution}/{emplid}")
-    public ResponseEntity<Object> obtenerRecomendacion(@PathVariable("institution") String institution, @PathVariable("emplid") String emplid) {
+    public ResponseEntity<Object> obtenerRecomendacion(@PathVariable("institution") String institution,
+                                                       @PathVariable("emplid") String emplid) {
         UltimaClaseAprobada ultimaClaseAprobada = psStdntEnrlService.ultimaClaseAprobada(institution, emplid, "6");
         LocalDate fechaActual = LocalDate.now();
-        if (ultimaClaseAprobada.FEC_MAX.after(Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
-            String sesionRecomendar = (char) (fechaActual.getMonthValue() + 64) + ultimaClaseAprobada.SESSION_CODE.substring(1);
-            List<ClaseRecomendada> claseRecomendadasList = psClassTblService.clasesRecomendadas("2023", "FOW",
-                    "210009", "2130");
-            claseRecomendadasList.forEach(p -> System.out.println((Object) p.PRECIO.getClass()));
-            return new ResponseEntity<>(psClassTblService.clasesRecomendadas("2023", "FOW",
-                    "210009", "2130"), HttpStatus.OK);
+        /*if (ultimaClaseAprobada.FEC_MAX.after(
+                Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
+            String sesionRecomendar =
+                    (char) (fechaActual.getMonthValue() + 64) + ultimaClaseAprobada.SESSION_CODE.substring(1);
+            return new ResponseEntity<>(
+                    psClassTblService.clasesRecomendadas("2023", sesionRecomendar, ultimaClaseAprobada.CRSE_ID,
+                            ultimaClaseAprobada.STND_MTG_PAT), HttpStatus.OK);
         } else {
-            System.out.println("" + Calendar.MONTH);
-            System.out.println("Ya vencio");
-        }
+            //No considerar curso a retornar puesto que ya supero el periodo de consideracion
+        }*/
         return new ResponseEntity<>(psStdntEnrlService.ultimaClaseAprobada(institution, emplid, "6"), HttpStatus.OK);
     }
 }

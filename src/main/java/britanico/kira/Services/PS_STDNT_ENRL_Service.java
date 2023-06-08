@@ -5,7 +5,6 @@ import britanico.kira.Models.PS_STDNT_ENRL_ID;
 import britanico.kira.Models.PS_STNDT_ENRL;
 import britanico.kira.ModelsAux.UltimaClaseAprobada;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
