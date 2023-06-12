@@ -22,9 +22,8 @@ import jakarta.persistence.*;
                 "AND RE.STRM = CT.STRM AND RE.SESSION_CODE = CT.SESSION_CODE AND RE.CLASS_SECTION = CT.CLASS_SECTION " +
                 "INNER JOIN PS_CRSE_CATALOG CC ON CC.CRSE_ID = RE.CRSE_ID AND CC.EFFDT = (SELECT MAX(B_ED.EFFDT) FROM" +
                 " PS_CRSE_CATALOG B_ED WHERE CC.CRSE_ID = B_ED.CRSE_ID AND B_ED.EFFDT <= GETDATE()) AND CC" +
-                ".RQMNT_DESIGNTN='' WHERE IC.INSTITUTION = :institution AND IC.EMPLID = :emplid AND IC" +
-                ".STDNT_ENRL_STATUS " +
-                "= 'E' AND IC.CRSE_GRADE_INPUT <> ' ') X INNER JOIN PS_CLASS_MTG_PAT PAT ON X.CRSE_ID = PAT.CRSE_ID " +
+                ".RQMNT_DESIGNTN='' WHERE IC.EMPLID = :emplid AND IC.STDNT_ENRL_STATUS = 'E' AND IC.CRSE_GRADE_INPUT " +
+                "<> ' ') X INNER JOIN PS_CLASS_MTG_PAT PAT ON X.CRSE_ID = PAT.CRSE_ID " +
                 "AND X.STRM = PAT.STRM AND X.CLASS_SECTION = PAT.CLASS_SECTION AND X.SESSION_CODE = PAT.SESSION_CODE " +
                 "WHERE X.NUM = 1", resultSetMapping = "ModelsAux.UltimaClaseAprobada")
         //,

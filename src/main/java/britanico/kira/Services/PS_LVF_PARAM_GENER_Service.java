@@ -3,6 +3,8 @@ package britanico.kira.Services;
 import britanico.kira.DAO.PS_LVF_PARAM_GENER_DAO;
 import britanico.kira.Models.PS_LVF_PARAM_GENER;
 import britanico.kira.Models.PS_LVF_PARAM_GENER_ID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +18,16 @@ import java.util.function.Function;
 
 @Service
 public class PS_LVF_PARAM_GENER_Service implements PS_LVF_PARAM_GENER_DAO {
+
+    public PS_LVF_PARAM_GENER_DAO psLvfParamGenerDao;
+
+    public PS_LVF_PARAM_GENER_Service(PS_LVF_PARAM_GENER_DAO psLvfParamGenerDao) {
+        this.psLvfParamGenerDao = psLvfParamGenerDao;
+    }
+
     @Override
     public String obtenerCantidadMesesContinuidad() {
-        return null;
+        return psLvfParamGenerDao.obtenerCantidadMesesContinuidad();
     }
 
     @Override

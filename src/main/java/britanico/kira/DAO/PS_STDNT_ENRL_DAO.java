@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface PS_STDNT_ENRL_DAO extends JpaRepository<PS_STNDT_ENRL, PS_STDNT_ENRL_ID> {
 
     @Query(nativeQuery = true)
-    UltimaClaseAprobada ultimaClaseAprobada(@Param("institution") String institution, @Param("emplid") String emplid,
+    UltimaClaseAprobada ultimaClaseAprobada(@Param("emplid") String emplid,
                                             @Param("meses") String meses);
 }

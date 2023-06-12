@@ -19,8 +19,11 @@ import java.util.function.Function;
 @Service
 public class PS_STDNT_ENRL_Service implements PS_STDNT_ENRL_DAO {
 
-    @Autowired
     public PS_STDNT_ENRL_DAO psStdntEnrlDao;
+
+    public PS_STDNT_ENRL_Service(PS_STDNT_ENRL_DAO psStdntEnrlDao) {
+        this.psStdntEnrlDao = psStdntEnrlDao;
+    }
 
     @Override
     public void flush() {
@@ -175,7 +178,7 @@ public class PS_STDNT_ENRL_Service implements PS_STDNT_ENRL_DAO {
     }
 
     @Override
-    public UltimaClaseAprobada ultimaClaseAprobada(String institution, String emplid, String meses) {
-        return psStdntEnrlDao.ultimaClaseAprobada(institution, emplid, meses);
+    public UltimaClaseAprobada ultimaClaseAprobada(String emplid, String meses) {
+        return psStdntEnrlDao.ultimaClaseAprobada(emplid, meses);
     }
 }

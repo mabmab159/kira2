@@ -1,7 +1,11 @@
 package britanico.kira.ModelsAux;
 
-import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClaseRecomendada {
     public Integer NRO_CLASE;
     public String DESCR_CLASE;

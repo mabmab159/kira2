@@ -19,8 +19,12 @@ import java.util.function.Function;
 @Service
 public class PS_CLASS_TBL_Service implements PS_CLASS_TBL_DAO {
 
-    @Autowired
+
     public PS_CLASS_TBL_DAO psClassTblDao;
+
+    public PS_CLASS_TBL_Service(PS_CLASS_TBL_DAO psClassTblDao) {
+        this.psClassTblDao = psClassTblDao;
+    }
 
     @Override
     public List<ClaseRecomendada> clasesRecomendadas(String strm, String session_code, String crse_id, String horario) {
@@ -103,7 +107,8 @@ public class PS_CLASS_TBL_Service implements PS_CLASS_TBL_DAO {
     }
 
     @Override
-    public <S extends PS_CLASS_TBL, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends PS_CLASS_TBL, R> R findBy(Example<S> example,
+                                                Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 
