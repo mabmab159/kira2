@@ -23,9 +23,16 @@ public class RestException extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
         Error error = new Error(
                 new Error.ErrorDetalle("402", "No se cumplen los parametros", "Argumentos invalidos o vacios"));
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleExceptionClass(Exception ex, WebRequest request){
+        Error error = new Error(
+                new Error.ErrorDetalle("500", "No se cumplen los parametros", "Error general"));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
