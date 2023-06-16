@@ -1,7 +1,6 @@
 package britanico.kira.Models;
 
 import britanico.kira.ModelsAux.ClaseRecomendada;
-import britanico.kira.ModelsAux.Dias;
 import britanico.kira.ModelsAux.ModeloReunion;
 import jakarta.persistence.*;
 
@@ -17,44 +16,18 @@ import jakarta.persistence.*;
                 "WHERE A.STRM=:strm AND A.SESSION_CODE=:session_code AND A" +
                 ".CRSE_ID=(SELECT CRSE_ID_EXT FROM PS_BRT_MAPCRSE_TBL WHERE CRSE_ID=:crse_id AND " +
                 "BRT_CRSE_RECOMEND='Y') AND B.STND_MTG_PAT=:horario", resultSetMapping = "ModelsAux.ClaseRecomendada"))
-@SqlResultSetMappings(@SqlResultSetMapping(name = "ModelsAux.ClaseRecomendada",
-        entities = {
-                @EntityResult(
-                        entityClass = ClaseRecomendada.class,
-                        fields = {
-                                @FieldResult(name = "NRO_CLASE", column = "NRO_CLASE"),
-                                @FieldResult(name = "DESCR_CLASE", column = "DESCR_CLASE"),
-                                @FieldResult(name = "DESCR_CURSO", column = "DESCR_CURSO"),
-                                @FieldResult(name = "SECCION_CLASE", column = "SECCION_CLASE"),
-                                @FieldResult(name = "CICLO_LECTIVO", column = "CICLO_LECTIVO"),
-                                @FieldResult(name = "SESION", column = "SESION"),
-                                @FieldResult(name = "VACANTES", column = "VACANTES"),
-                                @FieldResult(name = "PRECIO", column = "PRECIO"),
-                        }
-                ),
-                @EntityResult(
-                        entityClass = ModeloReunion.class,
-                        fields = {
-                                @FieldResult(name = "AULA", column = "AULA"),
-                                @FieldResult(name = "COD_HORA", column = "COD_HORA")
-                        }
-                ),
-                @EntityResult(
-                        entityClass = Dias.class,
-                        fields = {
-                                @FieldResult(name = "AULA", column = "AULA"),
-                                //@FieldResult(name = "COD_HORA", column = "COD_HORA"),
-                                @FieldResult(name = "MON", column = "MON"),
-                                @FieldResult(name = "TUES", column = "TUES"),
-                                @FieldResult(name = "WED", column = "WED"),
-                                @FieldResult(name = "THURS", column = "THURS"),
-                                @FieldResult(name = "FRI", column = "FRI"),
-                                @FieldResult(name = "SAT", column = "SAT"),
-                                @FieldResult(name = "SUN", column = "SUN")
-                        }
-                ),
-        }
-))
+@SqlResultSetMappings(@SqlResultSetMapping(name = "ModelsAux.ClaseRecomendada", entities = {
+        @EntityResult(entityClass = ClaseRecomendada.class,
+                fields = {@FieldResult(name = "NRO_CLASE", column = "NRO_CLASE"),
+                        @FieldResult(name = "DESCR_CLASE", column = "DESCR_CLASE"),
+                        @FieldResult(name = "DESCR_CURSO", column = "DESCR_CURSO"),
+                        @FieldResult(name = "SECCION_CLASE", column = "SECCION_CLASE"),
+                        @FieldResult(name = "CICLO_LECTIVO", column = "CICLO_LECTIVO"),
+                        @FieldResult(name = "SESION", column = "SESION"),
+                        @FieldResult(name = "VACANTES", column = "VACANTES"),
+                        @FieldResult(name = "PRECIO", column = "PRECIO"),}),
+        @EntityResult(entityClass = ModeloReunion.class, fields = {@FieldResult(name = "AULA", column = "AULA"),
+                @FieldResult(name = "COD_HORA", column = "COD_HORA")}),}))
 @Entity
 @Table(name = "PS_CLASS_TBL")
 public class PS_CLASS_TBL {

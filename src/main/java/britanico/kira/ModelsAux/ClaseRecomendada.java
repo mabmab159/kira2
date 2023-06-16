@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class ClaseRecomendada {
     public String SESION;
     public Short VACANTES;
     public BigDecimal PRECIO;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="AULA", referencedColumnName = "AULA")
+    @ManyToOne
+    @JoinColumn(name = "AULA")
     public ModeloReunion MODELO_REUNION;
 }
