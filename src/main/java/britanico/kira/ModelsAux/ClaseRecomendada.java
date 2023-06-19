@@ -12,6 +12,13 @@ public class ClaseRecomendada {
     public Short VACANTES;
     public BigDecimal PRECIO;
     public String AULA;
+    public String FECHAS_CLASE;
+    public String DESC_UBI;
+    public String DESC_HORA;
+    public String DOCENTE;
+    public String DESC_FREC;
+    public String COD_UBI;
+    public String COD_FREC;
     public String COD_HORA;
     public Character MON;
     public Character TUES;

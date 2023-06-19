@@ -2,11 +2,9 @@ package britanico.kira.Utils;
 
 import britanico.kira.ModelsAux.ClaseRecomendada;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,8 +33,8 @@ public class ClaseRecomendadaResponse {
     public void setLvfClase(ClaseRecomendada c) {
         LVF_CLASE lvfClase = new LVF_CLASE(c.NRO_CLASE, c.DESCR_CLASE, c.DESCR_CURSO, c.SECCION_CLASE, c.CICLO_LECTIVO,
                 c.SESION, c.VACANTES, c.PRECIO, new ArrayList<>(), new ArrayList<>());
-        MODELO_REUNION modeloReunion = new MODELO_REUNION(c.NRO_CLASE, c.AULA, c.COD_HORA, null, null, null, null, null,
-                null, null);
+        MODELO_REUNION modeloReunion = new MODELO_REUNION(c.NRO_CLASE, c.COD_HORA, c.DESC_HORA, c.AULA, c.COD_UBI,
+                c.DESC_UBI, c.COD_FREC, c.DESC_FREC, c.DOCENTE, c.FECHAS_CLASE);
         DIAS dias = new DIAS(c.NRO_CLASE, c.MON, c.TUES, c.WED, c.THURS, c.FRI, c.SAT, c.SUN);
         modeloReunionHashMap.put(c.NRO_CLASE, modeloReunion);
         integerDIASHashMap.put(c.NRO_CLASE, dias);

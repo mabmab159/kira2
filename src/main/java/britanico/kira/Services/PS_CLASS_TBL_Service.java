@@ -6,6 +6,7 @@ import britanico.kira.Models.PS_CLASS_TBL_ID;
 import britanico.kira.ModelsAux.ClaseRecomendada;
 import org.springframework.stereotype.Service;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,14 +65,17 @@ public class PS_CLASS_TBL_Service implements PS_CLASS_TBL_DAO {
 
     @Override
     public void delete(PS_CLASS_TBL entity) {
+
     }
 
     @Override
     public void deleteAllById(Iterable<? extends PS_CLASS_TBL_ID> psClassTblIds) {
+
     }
 
     @Override
     public void deleteAll(Iterable<? extends PS_CLASS_TBL> entities) {
+
     }
 
     @Override
