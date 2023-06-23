@@ -4,6 +4,7 @@ import britanico.kira.DAO.PS_CLASS_TBL_DAO;
 import britanico.kira.Models.PS_CLASS_TBL;
 import britanico.kira.Models.PS_CLASS_TBL_ID;
 import britanico.kira.ModelsAux.ClaseRecomendada;
+import britanico.kira.ModelsAux.HistorialClases;
 import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Annotation;
@@ -21,6 +22,11 @@ public class PS_CLASS_TBL_Service implements PS_CLASS_TBL_DAO {
     @Override
     public List<ClaseRecomendada> clasesRecomendadas(String strm, String session_code, String crse_id, String horario) {
         return psClassTblDao.clasesRecomendadas(strm, session_code, crse_id, horario);
+    }
+
+    @Override
+    public List<HistorialClases> historialClases(String crse_id) {
+        return psClassTblDao.historialClases(crse_id);
     }
 
     @Override

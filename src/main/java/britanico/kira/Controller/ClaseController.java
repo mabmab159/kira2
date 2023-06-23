@@ -7,8 +7,6 @@ import britanico.kira.Services.PS_CLASS_TBL_Service;
 import britanico.kira.Services.PS_LVF_PARAM_GENER_Service;
 import britanico.kira.Services.PS_STDNT_ENRL_Service;
 import britanico.kira.Utils.ClaseRecomendadaResponse;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -44,8 +42,16 @@ public class ClaseController {
             List<ClaseRecomendada> claseRecomendadaList = psClassTblService.clasesRecomendadas(
                     String.valueOf(fechaActual.getYear()), sesionRecomendar, ultimaClaseAprobada.CRSE_ID,
                     ultimaClaseAprobada.STND_MTG_PAT);
-            return new ClaseRecomendadaResponse(claseRecomendadaList).getLVF_CLASE();
+            return Salida.builder()
+                    .body(Salida.Body.builder().data(new ClaseRecomendadaResponse(claseRecomendadaList).getLVF_CLASE())
+                            .build()).build();
         }
         return Salida.builder().body(Salida.Body.builder().data(new ArrayList<>()).build()).build();
+    }
+
+    @GetMapping("/historialClases/{emplid}")
+    public Object historialClases(@PathVariable("emplid") String emplid) {
+        return Salida.builder().body(Salida.Body.builder().data(psClassTblService.historialClases(emplid)).build())
+                .build();
     }
 }
