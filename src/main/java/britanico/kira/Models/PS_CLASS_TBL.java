@@ -26,7 +26,36 @@ import jakarta.persistence.*;
                 "BRT_CRSE_RECOMEND = 'Y') AND B.STND_MTG_PAT = :horario AND I.FIELDNAME='LVF_TURNO_IDT'",
         resultSetMapping = "PS_CLASS_TBL.clasesRecomendadas")
 @NamedNativeQuery(name = "PS_CLASS_TBL.historialClases",
-        query = "SELECT * FROM PS_STDNT_ENRL A WHERE A.EMPLID='351123' AND A" + ".ENRL_STATUS_REASON='ENRL'",
+        query = "SELECT A.EMPLID, A.STRM, A.INSTITUTION, A.CRSE_CAREER, A.SESSION_CODE, A.CLASS_NBR, A.CRSE_GRADE_INPUT, A.ACAD_PROG," +
+                " A.GRADE_DT, A.GRADING_BASIS_ENRL, B.LVF_MES_BRIT, B.LOCATION, C.CRSE_ID, C.EMPLID AS DOCENTE_CODIGO " +
+                "FROM PS_STDNT_ENRL A \n" +
+                "\t, PS_LVF_TERM_TBL3 B \n" +
+                "\t, PS_CLASS_TBL C \n" +
+                "\t, PS_CLASS_MTG_PAT D \n" +
+                ", PS_LOCATION_TBL E"+
+                "WHERE A.INSTITUTION = B.INSTITUTION \n" +
+                "\tAND A.ACAD_CAREER =  B.ACAD_CAREER\n" +
+                "    AND A.STRM = B.STRM \n" +
+                "\tAND A.SESSION_CODE = B.SESSION_CODE\n" +
+                "\tAND A.INSTITUTION = C.INSTITUTION\n" +
+                "\tAND A.STRM = C.STRM \n" +
+                "\tAND A.CLASS_NBR = C.CLASS_NBR\n" +
+                "\tAND A.SESSION_CODE = C.SESSION_CODE \n" +
+                "\tAND C.CRSE_ID = D.CRSE_ID\n" +
+                "\tAND C.CRSE_OFFER_NBR = D.CRSE_OFFER_NBR \n" +
+                "\tAND C.STRM = D.STRM \n" +
+                "\tAND C.SESSION_CODE = D.SESSION_CODE\n" +
+                "\tAND C.CLASS_SECTION = D.CLASS_SECTION \n" +
+                "\tAND D.CLASS_MTG_NBR = (\n" +
+                "\t\t\t\t\t\t\t\tSELECT MIN(X.CLASS_MTG_NBR)\n" +
+                "\t\t\t\t\t\t\t\tFROM PS_CLASS_MTG_PAT X\n" +
+                "\t\t\t\t\t\t\t\tWHERE  X.CRSE_ID = D.CRSE_ID\n" +
+                "\t\t\t\t\t\t\t\t\t\tAND X.CRSE_OFFER_NBR = D.CRSE_OFFER_NBR \n" +
+                "\t\t\t\t\t\t\t\t\t\tAND X.STRM = D.STRM \n" +
+                "\t\t\t\t\t\t\t\t\t\tAND X.SESSION_CODE = D.SESSION_CODE\n" +
+                "\t\t\t\t\t\t\t\t\t\tAND X.CLASS_SECTION = D.CLASS_SECTION)\n" +
+                "AND B.LOCATION = E.LOCATION"+
+                "\tAND A.EMPLID=:emplid AND A.ENRL_STATUS_REASON='ENRL' ORDER BY A.GRADE_DT DESC",
         resultSetMapping = "PS_CLASS_TBL.historialClases")
 @SqlResultSetMapping(name = "PS_CLASS_TBL.clasesRecomendadas", classes = {
         @ConstructorResult(targetClass = ClaseRecomendada.class,
@@ -45,8 +74,12 @@ import jakarta.persistence.*;
         @ConstructorResult(targetClass = HistorialClases.class,
                 columns = {@ColumnResult(name = "EMPLID"), @ColumnResult(name = "STRM"),
                         @ColumnResult(name = "INSTITUTION"), @ColumnResult(name = "CRSE_CAREER"),
-                        @ColumnResult(name = "SESSION_CODE"), /*@ColumnResult(name = "LVF_MES_BRIT"),
-                        @ColumnResult(name = "ACAD_PROGRAM"), */@ColumnResult(name = "CLASS_NBR"),
+                        @ColumnResult(name = "SESSION_CODE"), @ColumnResult(name = "LVF_MES_BRIT"),
+                        @ColumnResult(name = "ACAD_PROG"), @ColumnResult(name = "CLASS_NBR"),
+                        @ColumnResult(name = "LOCATION"),
+                        @ColumnResult(name = "CRSE_ID"),
+                        @ColumnResult(name = "DOCENTE_CODIGO"),
+                        @ColumnResult(name = "CRSE_GRADE_INPUT"), @ColumnResult(name = "GRADE_DT"),
                         @ColumnResult(name = "GRADING_BASIS_ENRL")
 
                 })})

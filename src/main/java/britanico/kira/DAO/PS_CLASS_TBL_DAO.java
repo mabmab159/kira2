@@ -19,5 +19,5 @@ public interface PS_CLASS_TBL_DAO extends CrudRepository<PS_CLASS_TBL, PS_CLASS_
                                               @Param("crse_id") String crse_id, @Param("horario") String horario);
 
     @Query(nativeQuery = true)
-    List<HistorialClases> historialClases(@Param("crse_id") String crse_id);
+    List<HistorialClases> historialClases(@Param("emplid") String emplid);
 }
