@@ -2,7 +2,7 @@ version: '1'
 services:
   kira:
     container_name: kira
-    image: kira:1.0.1
+    image: myorg/myapp
     expose:
       - "8080"
       - "80"

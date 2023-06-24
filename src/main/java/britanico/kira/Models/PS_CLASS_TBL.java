@@ -28,11 +28,11 @@ import jakarta.persistence.*;
 @NamedNativeQuery(name = "PS_CLASS_TBL.historialClases",
         query = "SELECT A.EMPLID, A.STRM, A.INSTITUTION, A.CRSE_CAREER, A.SESSION_CODE, A.CLASS_NBR, A.CRSE_GRADE_INPUT, A.ACAD_PROG," +
                 " A.GRADE_DT, A.GRADING_BASIS_ENRL, B.LVF_MES_BRIT, B.LOCATION, C.CRSE_ID, C.EMPLID AS DOCENTE_CODIGO " +
-                "FROM PS_STDNT_ENRL A \n" +
-                "\t, PS_LVF_TERM_TBL3 B \n" +
+                "FROM PS_STDNT_ENRL A " +
+                ", PS_LVF_TERM_TBL3 B \n" +
                 "\t, PS_CLASS_TBL C \n" +
                 "\t, PS_CLASS_MTG_PAT D \n" +
-                ", PS_LOCATION_TBL E"+
+                ", PS_LOCATION_TBL E "+
                 "WHERE A.INSTITUTION = B.INSTITUTION \n" +
                 "\tAND A.ACAD_CAREER =  B.ACAD_CAREER\n" +
                 "    AND A.STRM = B.STRM \n" +
