@@ -7,6 +7,11 @@ import britanico.kira.Services.PS_CLASS_TBL_Service;
 import britanico.kira.Services.PS_LVF_PARAM_GENER_Service;
 import britanico.kira.Services.PS_STDNT_ENRL_Service;
 import britanico.kira.Utils.ClaseRecomendadaResponse;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -53,5 +58,10 @@ public class ClaseController {
     public Object historialClases(@PathVariable("emplid") String emplid) {
         return Salida.builder().body(Salida.Body.builder().data(psClassTblService.historialClases(emplid)).build())
                 .build();
+    }
+
+    @GetMapping("/**")
+    public Object test() throws Exception {
+        throw new Exception();
     }
 }

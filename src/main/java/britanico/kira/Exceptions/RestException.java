@@ -8,31 +8,32 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
 public class RestException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Object> HandleParamNotFound(RuntimeException ex, WebRequest request) {
+    public ResponseEntity<Object> HandleParamNotFound(ResourceNotFoundException ex, WebRequest request) {
         Error error = new Error(new Error.ErrorDetalle("400", "Not Found", "Resource Not Found"));
-        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.valueOf(error.getError().getCode()),
-                request);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
         Error error = new Error(
-                new Error.ErrorDetalle("402", "No se cumplen los parametros", "Argumentos invalidos o vacios"));
+                new Error.ErrorDetalle("402", ex.getMessage(), "Argumentos invalidos o vacios"));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleExceptionClass(Exception ex, WebRequest request){
         Error error = new Error(
-                new Error.ErrorDetalle("500", "No se cumplen los parametros", "Error general"));
+                new Error.ErrorDetalle("500", "asd", "Error general"));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
